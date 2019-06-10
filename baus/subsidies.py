@@ -9,7 +9,7 @@ from io import StringIO
 from urbansim.utils import misc
 from utils import add_buildings
 from urbansim.developer import sqftproforma
-
+from functools import reduce
 
 # this method is a custom profit to probability function where we test the
 # combination of different metrics like return on cost and raw profit
@@ -244,11 +244,16 @@ def policy_modifications_of_profit(feasibility, parcels):
 
             if orca.get_injectable("scenario") in \
                     policy["enable_in_scenarios"]:
-
+                #change column to boolean to evaluate > 0
                 parcels_geography = orca.get_table("parcels_geography")
+                parcels_geography = pd.DataFrame({\
+                            'tpp_id' : parcels_geography['tpp_id'].notnull(),
+                            'pda_id' : parcels_geography['pda_id'].notnull(),
+                            'jurisdiction_id' : parcels_geography['jurisdiction_id'].notnull()
+                            })
 
                 pct_modifications = \
-                    parcels_geography.local.eval(
+                    parcels_geography.eval(
                         policy["profitability_adjustment_formula"])
                 pct_modifications += 1.0
 
@@ -335,8 +340,8 @@ def subsidized_office_developer(feasibility, coffer, acct_settings, year,
     # get the office feasibility frame and sort by profit per sqft
     feasibility = feasibility.to_frame().loc[:, "office"]
     feasibility = feasibility.dropna(subset=["max_profit"])
-
-    feasibility["pda_id"] = feasibility.pda
+    #change column to boolean to evaluate > 0
+    feasibility["pda_id"] = feasibility.pda.notnull()
 
     # filter to receiving zone
     feasibility = feasibility.\
@@ -520,6 +525,8 @@ def run_subsidized_developer(feasibility, parcels, buildings, households,
 
     # step 5
     if "receiving_buildings_filter" in acct_settings:
+        #change column to boolean to evaluate > 0
+        feasibility['pda_id'] = feasibility['pda_id'].notnull()
         feasibility = feasibility.\
             query(acct_settings["receiving_buildings_filter"])
     else:
