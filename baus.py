@@ -306,6 +306,10 @@ def run_models(MODE, SCENARIO):
                              EVERY_NTH_YEAR)
         models = get_simulation_models(SCENARIO)
         orca.run(models, iter_vars=years_to_run)
+        print('TIPO residential_units',type(residential_units))
+        print(len(residential_units))
+        print('TIPO buildings',type(buildings))
+        print(buildings.residential_units.sum())
 
     elif MODE == "estimation":
 
