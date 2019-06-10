@@ -115,6 +115,8 @@ if SLACK:
 def print_test(residential_units,buildings):
     print('ACAAAA residential_units',len(residential_units))
     print('ACAAAA buildings',print(buildings.residential_units.sum())
+    return None
+
 
 def get_simulation_models(SCENARIO):
 
