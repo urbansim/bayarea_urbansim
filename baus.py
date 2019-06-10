@@ -126,31 +126,39 @@ def get_simulation_models(SCENARIO):
     # of the old version soon
 
     models = [
-
+        "print_test",
         "slr_inundate",
+        "print_test",
         "slr_remove_dev",
+        "print_test",
         "eq_code_buildings",
+        "print_test",
         "earthquake_demolish",
-
+        "print_test",
         "neighborhood_vars",    # street network accessibility
+        "print_test",
         "regional_vars",        # road network accessibility
-
+        "print_test",
         "nrh_simulate",         # non-residential rent hedonic
-
+        "print_test",
         # uses conditional probabilities
         "households_relocation",
+        "print_test",
         "households_transition",
+        "print_test",
         # update building/unit/hh correspondence
         "reconcile_unplaced_households",
-
+        "print_test",
         "jobs_relocation",
+        "print_test",
         "jobs_transition",
-
+        "print_test",
         "balance_rental_and_ownership_hedonics",
-
+        "print_test",
         "price_vars",
+        "print_test",
         "scheduled_development_events",
-
+        "print_test",
         # run the subsidized acct system
         "lump_sum_accounts",
         "print_test",
