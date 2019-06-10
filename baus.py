@@ -111,6 +111,10 @@ if SLACK:
     slack = Slacker(os.environ["SLACK_TOKEN"])
     host = socket.gethostname()
 
+@orca.step()
+def print_test(residential_units,buildings):
+    print('ACAAAA residential_units',len(residential_units))
+    print('ACAAAA buildings',print(buildings.residential_units.sum())
 
 def get_simulation_models(SCENARIO):
 
@@ -145,12 +149,15 @@ def get_simulation_models(SCENARIO):
 
         # run the subsidized acct system
         "lump_sum_accounts",
+        "print_test",
         "subsidized_residential_developer_lump_sum_accts",
-
+        "print_test",
         "alt_feasibility",
-
+        "print_test",
         "residential_developer",
+        "print_test",
         "developer_reprocess",
+        "print_test",
         "retail_developer",
         "office_developer",
         "accessory_units",
@@ -306,10 +313,6 @@ def run_models(MODE, SCENARIO):
                              EVERY_NTH_YEAR)
         models = get_simulation_models(SCENARIO)
         orca.run(models, iter_vars=years_to_run)
-        print('TIPO residential_units',type(residential_units))
-        print(len(residential_units))
-        print('TIPO buildings',type(buildings))
-        print(buildings.residential_units.sum())
 
     elif MODE == "estimation":
 
