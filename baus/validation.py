@@ -50,12 +50,6 @@ def check_job_controls(jobs, employment_controls, year, settings):
 def check_residential_units(residential_units, buildings):
     print("Check residential units")
     # assert we fanned out the residential units correctly
-    print('TIPO residential_units',type(residential_units))
-    print(len(residential_units))
-    print('TIPO buildings',type(buildings))
-    print(buildings.residential_units.sum())
-
-
     assert len(residential_units) == buildings.residential_units.sum()
 
     # make sure the unit counts per building add up
@@ -72,7 +66,7 @@ def check_residential_units(residential_units, buildings):
         residential_units.deed_restricted.groupby(
             residential_units.building_id).sum().sort_index()
     )
-    
+
 
 
 # make sure everyone gets a house - this might not exist in the real world,

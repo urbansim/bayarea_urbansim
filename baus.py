@@ -111,13 +111,6 @@ if SLACK:
     slack = Slacker(os.environ["SLACK_TOKEN"])
     host = socket.gethostname()
 
-@orca.step()
-def print_test(residential_units,buildings):
-    print('ACAAAA residential_units',len(residential_units))
-
-    print('ACAAAA buildings',buildings.residential_units.sum())
-    print('IS TRUE?',len(residential_units) == buildings.residential_units.sum())
-    return None
 
 
 def get_simulation_models(SCENARIO):
@@ -144,22 +137,14 @@ def get_simulation_models(SCENARIO):
         "jobs_transition",
 
         "balance_rental_and_ownership_hedonics",
-        "print_test",
         "price_vars",
-        "print_test",
         "scheduled_development_events",
-        "print_test",
         # run the subsidized acct system
         "lump_sum_accounts",
-        "print_test",
         "subsidized_residential_developer_lump_sum_accts",
-        "print_test",
         "alt_feasibility",
-        "print_test",
         "residential_developer",
-        "print_test",
         "developer_reprocess",
-        "print_test",
         "retail_developer",
         "office_developer",
         "accessory_units",
@@ -167,9 +152,7 @@ def get_simulation_models(SCENARIO):
         # (for buildings that were removed)
         "remove_old_units",
         # set up units for new residential buildings
-        "print_test",
         "initialize_new_units",
-        "print_test",
         # update building/unit/hh correspondence
         "reconcile_unplaced_households",
 
@@ -205,11 +188,8 @@ def get_simulation_models(SCENARIO):
         "elcm_simulate",            # displaced by new dev
 
         # save_intermediate_tables", # saves output for visualization
-        "print_test",
         "topsheet",
-        "print_test",
         "simulation_validation",
-        "print_test",
         "parcel_summary",
         "building_summary",
         "diagnostic_output",
