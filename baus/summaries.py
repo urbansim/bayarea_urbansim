@@ -1478,7 +1478,7 @@ def add_age_categories(df, year, regional_controls):
     col_marginals = rc[agecols].loc[year].values
 
     target = df.totpop.sum()
-    col_marginals = scale_by_target(col_marginals,
+    col_marginals = scale_by_target(pd.Series(col_marginals),
                                     target).round().astype('int')
 
     seed_matrix[seed_matrix == 0] = .1
