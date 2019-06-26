@@ -245,10 +245,16 @@ def policy_modifications_of_profit(feasibility, parcels):
             if orca.get_injectable("scenario") in \
                     policy["enable_in_scenarios"]:
 
+                #change column to boolean to evaluate > 0
                 parcels_geography = orca.get_table("parcels_geography")
+                parcels_geography = pd.DataFrame({\
+                            'tpp_id' : parcels_geography['tpp_id'].notnull(),
+                            'pda_id' : parcels_geography['pda_id'].notnull(),
+                            'jurisdiction_id' : parcels_geography['jurisdiction_id'].notnull()
+                            })
 
                 pct_modifications = \
-                    parcels_geography.local.eval(
+                    parcels_geography.eval(
                         policy["profitability_adjustment_formula"])
                 pct_modifications += 1.0
 
