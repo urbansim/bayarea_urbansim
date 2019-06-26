@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from urbansim import accounts
 from urbansim_defaults import utils
-from io import StringIO
+from io import BytesIO as StringIO
 from urbansim.utils import misc
 from utils import add_buildings
 from urbansim.developer import sqftproforma
@@ -529,7 +529,7 @@ def run_subsidized_developer(feasibility, parcels, buildings, households,
     if "receiving_buildings_filter" in acct_settings:
         #change column to boolean to evaluate > 0
         feasibility['pda_id'] = feasibility['pda_id'].notnull()
-        
+
         feasibility = feasibility.\
             query(acct_settings["receiving_buildings_filter"])
     else:
