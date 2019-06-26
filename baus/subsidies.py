@@ -342,7 +342,8 @@ def subsidized_office_developer(feasibility, coffer, acct_settings, year,
     feasibility = feasibility.to_frame().loc[:, "office"]
     feasibility = feasibility.dropna(subset=["max_profit"])
 
-    feasibility["pda_id"] = feasibility.pda
+    #change column to boolean to evaluate > 0
+    feasibility["pda_id"] = feasibility.pda.notnull()
 
     # filter to receiving zone
     feasibility = feasibility.\
