@@ -367,6 +367,11 @@ def subsidized_office_developer(feasibility, coffer, acct_settings, year,
     # filter to receiving zone
     print('--------------- pda_id > 0 ------------------------')
     print(len(feasibility))
+    print(feasibility.head())
+    print(feasibility.describe())
+    print(feasibility.pda_id)
+    print(len(feasibility.query('pda_id != ""')))
+
     feasibility = feasibility.\
         query(formula)
     print(len(feasibility))
