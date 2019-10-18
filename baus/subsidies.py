@@ -365,8 +365,12 @@ def subsidized_office_developer(feasibility, coffer, acct_settings, year,
         formula = acct_settings["vmt_settings"]["receiving_buildings_filter"]
 
     # filter to receiving zone
+    print('--------------- pda_id > 0 ------------------------')
+    print(len(feasibility))
     feasibility = feasibility.\
         query(formula)
+    print(len(feasibility))
+    print('--------------- pda_id > 0 ------------------------')
 
     feasibility["non_residential_sqft"] = \
         feasibility.non_residential_sqft.astype("int")
